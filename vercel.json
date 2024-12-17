@@ -10,7 +10,9 @@
       { "src": "/images/(.*)", "dest": "/public/images/$1" },
       { "src": "/(.*)", "dest": "/api/index.php" }
     ],
-    "buildCommand": "composer install --no-dev --optimize-autoloader && php artisan config:cache && php artisan route:cache",
+    "public": true,
+    "buildCommand": "npm run build",
+    "outputDirectory": "public",
     "env": {
       "APP_ENV": "production",
       "APP_DEBUG": "false",
