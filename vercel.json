@@ -1,7 +1,7 @@
 {
     "version": 2,
     "functions": {
-      "api/index.php": { "runtime": "vercel-php@0.7.0" }
+      "public/index.php": { "runtime": "vercel-php@latest" }
     },
     "routes": [
       { "src": "/build/(.*)", "dest": "/public/build/$1" },
@@ -10,20 +10,12 @@
       { "src": "/images/(.*)", "dest": "/public/images/$1" },
       { "src": "/(.*)", "dest": "/public/index.php" }
     ],
-    "public": true,
-    "buildCommand": "npm run build",
-    "outputDirectory": "public",
+    "buildCommand": "composer install --no-dev --optimize-autoloader && php artisan config:cache && php artisan route:cache",
     "env": {
       "APP_ENV": "production",
       "APP_DEBUG": "false",
       "APP_URL": "https://greenerlife.vercel.app/",
       "APP_KEY": "base64:S0grPpLIEGtbNBoxlKfqy4PVLrTLNhYyW5wfhjBh2xc=",
-      "APP_CONFIG_CACHE": "/tmp/config.php",
-      "APP_EVENTS_CACHE": "/tmp/events.php",
-      "APP_PACKAGES_CACHE": "/tmp/packages.php",
-      "APP_ROUTES_CACHE": "/tmp/routes.php",
-      "APP_SERVICES_CACHE": "/tmp/services.php",
-      "VIEW_COMPILED_PATH": "/tmp",
       "CACHE_DRIVER": "array",
       "LOG_CHANNEL": "stderr",
       "SESSION_DRIVER": "cookie",
