@@ -17,13 +17,11 @@ $app = Application::configure(basePath: dirname(__DIR__))
         //
     })->create();
 
-// Force writable paths for Vercel
-$writableCachePath = '/tmp/bootstrap/cache';
-
-if (!is_dir($writableCachePath)) {
-    mkdir($writableCachePath, 0755, true);
-}
-
+// Force all writable paths to /tmp for Vercel
 $app->useStoragePath('/tmp');
+
+if (!is_dir('/tmp/bootstrap/cache')) {
+    mkdir('/tmp/bootstrap/cache', 0755, true);
+}
 
 return $app;
