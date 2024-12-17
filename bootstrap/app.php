@@ -17,18 +17,13 @@ $app = Application::configure(basePath: dirname(__DIR__))
         //
     })->create();
 
-// Fix: Redirect writable paths to `/tmp` directory for Vercel compatibility
-$app->useStoragePath('/tmp');
+// Force writable paths for Vercel
+$writableCachePath = '/tmp/bootstrap/cache';
 
-// Ensure directories exist
-if (!is_dir('/tmp/bootstrap/cache')) {
-    mkdir('/tmp/bootstrap/cache', 0755, true);
+if (!is_dir($writableCachePath)) {
+    mkdir($writableCachePath, 0755, true);
 }
-if (!is_dir('/tmp/framework/sessions')) {
-    mkdir('/tmp/framework/sessions', 0755, true);
-}
-if (!is_dir('/tmp/views')) {
-    mkdir('/tmp/views', 0755, true);
-}
+
+$app->useStoragePath('/tmp');
 
 return $app;
