@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Custom navbar styles */
+.navbar-custom {
+    background-color: rgba(0, 0, 0, 0.5) !important;  /* Transparent background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);  /* Soft shadow */
+}
+
+/* Navbar links */
+.navbar-custom .nav-link {
+    font-size: 1.1rem;
+    font-weight: 600;  /* Bolder text */
+    color: #fff;
+}
+
+/* Active link styles */
+.navbar-custom .nav-link.active {
+    color: #ffdd57;  /* Active link color */
+}
+
+/* Navbar-toggler icon color */
+.navbar-toggler-icon {
+    background-color: white;  /* Change hamburger icon color */
+}
+
+
+/* Full-screen carousel images */
+.carousel-inner img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+/* Remove any default numbering or list style from indicators */
+.carousel-indicators li {
+    list-style: none; /* Disable default list styles */
+}
+
+/* Additional customization (optional) */
+.carousel-indicators {
+    margin-bottom: 20px; /* Adjust spacing below the carousel */
+}
+
+.carousel-indicators li {
+    width: 12px; /* Adjust circle size */
+    height: 12px;
+    border-radius: 50%; /* Make the indicators circular */
+    background-color: rgba(255, 255, 255, 0.7); /* Light gray */
+    border: none; /* Remove borders */
+}
+
+.carousel-indicators .active {
+    background-color: white; /* Active indicator color */
+}
+
+
+.carousel-caption{
+    margin-bottom: 5%;
+    margin-left: -5%;
+    font-size:x-large;
+}
