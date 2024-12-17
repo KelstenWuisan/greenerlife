@@ -10,15 +10,17 @@
       { "src": "/images/(.*)", "dest": "/public/images/$1" },
       { "src": "/(.*)", "dest": "/api/index.php" }
     ],
-    "buildCommand": "composer install --ignore-platform-reqs --no-dev --optimize-autoloader",
+    "public": true,
+    "buildCommand": "npm run build",
+    "outputDirectory": "public",
     "env": {
       "APP_ENV": "production",
       "APP_DEBUG": "false",
       "APP_URL": "https://greenerlife.vercel.app/",
       "APP_KEY": "base64:S0grPpLIEGtbNBoxlKfqy4PVLrTLNhYyW5wfhjBh2xc=",
-      "SESSION_DRIVER": "cookie",
       "CACHE_DRIVER": "array",
       "LOG_CHANNEL": "stderr",
+      "SESSION_DRIVER": "cookie",
       "DB_CONNECTION": "mysql",
       "DB_HOST": "jipmi.h.filess.io",
       "DB_PORT": "3306",
@@ -26,4 +28,5 @@
       "DB_USERNAME": "greenerlife_wheatsadbe",
       "DB_PASSWORD": "7dbde7563233c3ee91f061eaa5ac5d9a8abceb9d"
     }
-}
+  }
+  
