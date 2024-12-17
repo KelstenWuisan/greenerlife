@@ -21,7 +21,13 @@ $app = Application::configure(basePath: dirname(__DIR__))
 if (!is_dir('/tmp/bootstrap/cache')) {
     mkdir('/tmp/bootstrap/cache', 0755, true);
 }
-
 $app->useStoragePath('/tmp');
+
+// Force Laravel to use /tmp/bootstrap/cache explicitly
+$config = $app->make('config');
+$config->set('view.compiled', '/tmp/views');
+$config->set('cache.stores.file.path', '/tmp/framework/cache');
+$config->set('session.files', '/tmp/framework/sessions');
+$config->set('app.manifest', '/tmp/bootstrap/cache');
 
 return $app;
