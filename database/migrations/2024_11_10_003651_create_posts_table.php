@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id'); // Add 'user_id' if it doesn't exist
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
-            $table->string('image')->nullable();
+            $table->longText('image')->nullable();
             $table->string('slug')->unique();
             $table->text("location");
             $table->text("body");

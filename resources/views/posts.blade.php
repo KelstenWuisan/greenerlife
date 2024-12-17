@@ -131,12 +131,10 @@
                         <div class="card-body d-flex align-items-center">
                             <!-- Left side: Image -->
                             <div class="post-image" style="flex: 1; padding-right: 20px;">
-                                <img src="{{ $post->image && file_exists(public_path('storage/' . $post->image)) 
-                                        ? asset('storage/' . $post->image) 
-                                        : asset('images/default-image.jpg') }}" 
-                                alt="Post Image" 
-                                class="img-fluid" 
-                                style="max-width: 100%; height: auto; border-radius: 8px;">
+                                <img src="{{ $post->image ? $post->image : asset('images/default-image.jpg') }}" 
+                                    alt="Post Image" 
+                                    class="img-fluid" 
+                                    style="max-width: 100%; height: auto; border-radius: 8px;">
                             </div>
 
                             <!-- Right side: Text -->

@@ -13,7 +13,7 @@
                 <!-- Profile Picture -->
                 <div class="mb-4">
                     @if($user->profile_picture)
-                        <img src="{{ asset('storage/' . $user->profile_picture) }}" 
+                        <img src="{{ $user->profile_picture }}" 
                              alt="Profile Picture" 
                              class="rounded-circle border border-secondary" 
                              style="width: 150px; height: 150px; object-fit: cover;">

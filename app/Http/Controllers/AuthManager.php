@@ -77,6 +77,14 @@ class AuthManager extends Controller
             'rsvp_limit' => 'required|integer|min:1|max:1000',
         ]);
 
+        // Check and convert the uploaded image to Base64
+        $image = null;
+        if ($request->hasFile('image')) {
+            $imageData = base64_encode(file_get_contents($request->file('image')->path()));
+            $mimeType = $request->file('image')->getClientMimeType();
+            $image = "data:$mimeType;base64,$imageData";
+        }
+
         // Prepare the data
         $data = [
             'title' => $request->title,
@@ -85,14 +93,13 @@ class AuthManager extends Controller
             'body' => $request->body,
             'user_id' => Auth::id(),
             'category_id' => $request->category_id,
-            'image' => $request->hasFile('image') 
-                ? $request->file('image')->store('post-images', 'public') 
-                : null,
+            'image' => $image,  // Store Base64 image
             'rsvp_limit' => $request->rsvp_limit,
         ];
 
         // Create the post
         $post = Post::create($data);
+
 
         if (!$post) {
             return redirect(route('createpost'))->with('error', 'Creating event failed, try again.');

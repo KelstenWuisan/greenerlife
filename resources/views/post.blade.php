@@ -7,12 +7,11 @@
 
         <!-- Post Image -->
         <div class="post-image">
-            <img src="{{ $post->image && file_exists(public_path('storage/' . $post->image)) 
-                    ? asset('storage/' . $post->image) 
-                    : asset('images/default-image.jpg') }}" 
-            alt="{{ $post->image ? 'Post Image' : 'Default Post Image' }}" 
-            class="img-fluid">
+            <img src="{{ $post->image ? $post->image : asset('images/default-image.jpg') }}" 
+                alt="{{ $post->image ? 'Post Image' : 'Default Post Image' }}" 
+                class="img-fluid">
         </div>
+
 
         <!-- Post Description -->
         <div class="post-description">

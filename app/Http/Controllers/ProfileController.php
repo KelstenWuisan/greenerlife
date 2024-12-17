@@ -30,7 +30,7 @@ class ProfileController extends Controller
             'password' => 'nullable|confirmed|min:8',
             'age' => 'nullable|integer',
             'bio' => 'nullable|string|max:1000',
-            'profile_picture' => 'nullable|image|max:2048',  // Validate image size
+            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',  // Validate image size
         ]);
 
         // Get the currently logged-in user
@@ -51,16 +51,15 @@ class ProfileController extends Controller
 
         // Update profile picture if a new file is uploaded
         if ($request->hasFile('profile_picture')) {
-            // Check if the user has a profile picture and delete the old one
-            if ($user->profile_picture && file_exists(public_path('storage/' . $user->profile_picture))) {
-                unlink(public_path('storage/' . $user->profile_picture));  // Delete the old image
-            }
+            // Convert the uploaded file to Base64
+            $imageData = base64_encode(file_get_contents($request->file('profile_picture')->path()));
+            $mimeType = $request->file('profile_picture')->getClientMimeType();
+            $base64Image = "data:$mimeType;base64,$imageData";
 
-            // Store the new profile picture
-            $fileName = Str::random(10) . '.' . $request->file('profile_picture')->getClientOriginalExtension();
-            $path = $request->file('profile_picture')->storeAs('profile-pictures', $fileName, 'public');
-            $user->profile_picture = $path;  // Store the new image path in the database
+            // Update the Base64 image string in the database
+            $user->profile_picture = $base64Image;
         }
+
 
         // Save the updated user data
         $user->save();
