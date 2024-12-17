@@ -18,16 +18,17 @@ $app = Application::configure(basePath: dirname(__DIR__))
     })->create();
 
 // Fix: Redirect writable paths to `/tmp` directory for Vercel compatibility
+$app->useStoragePath('/tmp');
+
+// Ensure directories exist
 if (!is_dir('/tmp/bootstrap/cache')) {
     mkdir('/tmp/bootstrap/cache', 0755, true);
 }
-$app->useStoragePath('/tmp');
-
-// Force Laravel to use /tmp/bootstrap/cache explicitly
-$config = $app->make('config');
-$config->set('view.compiled', '/tmp/views');
-$config->set('cache.stores.file.path', '/tmp/framework/cache');
-$config->set('session.files', '/tmp/framework/sessions');
-$config->set('app.manifest', '/tmp/bootstrap/cache');
+if (!is_dir('/tmp/framework/sessions')) {
+    mkdir('/tmp/framework/sessions', 0755, true);
+}
+if (!is_dir('/tmp/views')) {
+    mkdir('/tmp/views', 0755, true);
+}
 
 return $app;
