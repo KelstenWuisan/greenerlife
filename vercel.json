@@ -15,7 +15,7 @@
     "outputDirectory": "public",
     "env": {
       "APP_ENV": "production",
-      "APP_DEBUG": "false",
+      "APP_DEBUG": "true",
       "APP_URL": "https://greenerlife.vercel.app/",
       "APP_KEY": "base64:S0grPpLIEGtbNBoxlKfqy4PVLrTLNhYyW5wfhjBh2xc=",
       "CACHE_DRIVER": "array",
