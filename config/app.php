@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'providers' => [
+    'providers' => array_filter([
         /*
-         * Laravel Framework Service Providers...
-         */
+        * Laravel Framework Service Providers...
+        */
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -41,22 +41,18 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
-         */
-
-        /*
-         * Application Service Providers...
-         */
+        * Application Service Providers...
+        */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        // Conditional loading of Collision in the local environment
-        env('APP_ENV') === 'local'
-            ? NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider::class
-            : null,
-    ],
+        // Conditional loading of Collision and Sail
+        env('APP_ENV') === 'local' ? NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider::class : null,
+        env('APP_ENV') === 'local' && class_exists(Laravel\Sail\SailServiceProvider::class) ? Laravel\Sail\SailServiceProvider::class : null,
+    ]),
+
 
     'name' => env('APP_NAME', 'Laravel'),
 
