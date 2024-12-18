@@ -50,7 +50,7 @@ return [
 
         // Conditional loading of Collision and Sail
         env('APP_ENV') === 'local' ? NunoMaduro\Collision\Adapters\Laravel\CollisionServiceProvider::class : null,
-        env('APP_ENV') === 'local' && class_exists(Laravel\Sail\SailServiceProvider::class) ? Laravel\Sail\SailServiceProvider::class : null,
+        env('APP_ENV') === 'local' ? Laravel\Sail\SailServiceProvider::class : null,
     ]),
 
 
